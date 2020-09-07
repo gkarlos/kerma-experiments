@@ -1,0 +1,3 @@
+{
+  "clang-format.executable": "${env.LLVM_HOME}/bin/clang-format"
+}
