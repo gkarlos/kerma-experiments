@@ -8,3 +8,33 @@ in order to determine for how many of those we can infer their location statical
 
 ## Build and run
 TODO
+
+## Rodinia
+### Selected
+- backprop
+- bfs
+- cfd<sup id="a1">[1](#f1)</sup>
+- gaussian
+- hotspot
+- kmeans
+- nn (+check IR, +maybe fix manually)
+- nw
+- particlefilter
+- pathfinder
+
+### Not selected (maybe count manually)
+- b+tree (complex struct arguments)
+- dwt2d (c++ templates)
+- heartwall (links with avilib)
+- mummergpu (complex args + multifile + liblinking)
+- leukocyte
+
+### Fix manually (maybe)
+- hybridsort
+- lavaMD
+- lud
+- myocyte
+- srad
+- streamcluster (+ check IR)
+
+<a id="f1"><b>[1]</b></a> only using euler3d.cu the rest are basically identical except for using `double` instead of `float` types.[↩](#a1)
