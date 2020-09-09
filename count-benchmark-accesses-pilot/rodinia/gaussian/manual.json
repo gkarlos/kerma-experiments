@@ -1,0 +1,23 @@
+[
+  {
+    "version": "",
+    "data": {
+      "Fan1": {
+        "all": 3,
+        "static": 3,
+        "inloop": {
+          "static": 0,
+          "dynamic": 0
+        }
+      },
+      "Fan2": {
+        "all": 8,
+        "static": 8,
+        "inloop": {
+          "static": 0,
+          "dynamic": 0
+        }
+      }
+    }
+  }
+]

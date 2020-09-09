@@ -55,51 +55,57 @@ void check_error(cudaError e) {
 	    exit(1);
      }
 }
-__device__ int findIndexSeq(double * CDF, int lengthCDF, double value)
-{
-	int index = -1;
-	int x;
-	for(x = 0; x < lengthCDF; x++)
-	{
-		if(CDF[x] >= value)
-		{
-			index = x;
-			break;
-		}
-	}
-	if(index == -1)
-		return lengthCDF-1;
-	return index;
-}
-__device__ int findIndexBin(double * CDF, int beginIndex, int endIndex, double value)
-{
-	if(endIndex < beginIndex)
-		return -1;
-	int middleIndex;
-	while(endIndex > beginIndex)
-	{
-		middleIndex = beginIndex + ((endIndex-beginIndex)/2);
-		if(CDF[middleIndex] >= value)
-		{
-			if(middleIndex == 0)
-				return middleIndex;
-			else if(CDF[middleIndex-1] < value)
-				return middleIndex;
-			else if(CDF[middleIndex-1] == value)
-			{
-				while(CDF[middleIndex] == value && middleIndex >= 0)
-					middleIndex--;
-				middleIndex++;
-				return middleIndex;
-			}
-		}
-		if(CDF[middleIndex] > value)
-			endIndex = middleIndex-1;
-		else
-			beginIndex = middleIndex+1;
-	}
-	return -1;
-}
+
+// unused
+//
+// __device__ int findIndexSeq(double * CDF, int lengthCDF, double value)
+// {
+// 	int index = -1;
+// 	int x;
+// 	for(x = 0; x < lengthCDF; x++)
+// 	{
+// 		if(CDF[x] >= value)
+// 		{
+// 			index = x;
+// 			break;
+// 		}
+// 	}
+// 	if(index == -1)
+// 		return lengthCDF-1;
+// 	return index;
+// }
+
+// unused
+//
+// __device__ int findIndexBin(double * CDF, int beginIndex, int endIndex, double value)
+// {
+// 	if(endIndex < beginIndex)
+// 		return -1;
+// 	int middleIndex;
+// 	while(endIndex > beginIndex)
+// 	{
+// 		middleIndex = beginIndex + ((endIndex-beginIndex)/2);
+// 		if(CDF[middleIndex] >= value)
+// 		{
+// 			if(middleIndex == 0)
+// 				return middleIndex;
+// 			else if(CDF[middleIndex-1] < value)
+// 				return middleIndex;
+// 			else if(CDF[middleIndex-1] == value)
+// 			{
+// 				while(CDF[middleIndex] == value && middleIndex >= 0)
+// 					middleIndex--;
+// 				middleIndex++;
+// 				return middleIndex;
+// 			}
+// 		}
+// 		if(CDF[middleIndex] > value)
+// 			endIndex = middleIndex-1;
+// 		else
+// 			beginIndex = middleIndex+1;
+// 	}
+// 	return -1;
+// }
 /*****************************
 * CUDA Kernel Function to replace FindIndex
 * param1: arrayX
@@ -503,6 +509,7 @@ void particleFilter(int * I, int IszX, int IszY, int Nfr, int * seed, int Nparti
 			likelihood[x] = calcLikelihoodSum(I, ind, countOnes);
 			likelihood[x] = likelihood[x]/countOnes;
 		}
+
 		long long likelihood_time = get_time();
 		printf("TIME TO GET LIKELIHOODS TOOK: %f\n", elapsed_time(error, likelihood_time));
 		// update & normalize weights

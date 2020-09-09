@@ -1,0 +1,23 @@
+[
+  {
+    "version": "",
+    "data": {
+      "bpnn_layerforward_CUDA": {
+        "all": 14,
+        "static": 14,
+        "inloop": {
+          "static": 3,
+          "dynamic": 0
+        }
+      },
+      "bpnn_adjust_weights_cuda": {
+        "all": 16,
+        "static": 16,
+        "inloop": {
+          "static": 0,
+          "dynamic": 0
+        }
+      }
+    }
+  }
+]

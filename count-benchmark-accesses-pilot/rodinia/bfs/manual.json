@@ -1,0 +1,23 @@
+[
+  {
+    "version": "",
+    "data": {
+      "Kernel": {
+        "all": 10,
+        "static": 10,
+        "inloop": {
+          "static": 4,
+          "dynamic": 0
+        }
+      },
+      "Kernel2": {
+        "all": 5,
+        "static": 5,
+        "inloop": {
+          "static": 0,
+          "dynamic": 0
+        }
+      }
+    }
+  }
+]

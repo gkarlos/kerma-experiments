@@ -1,0 +1,15 @@
+[
+  {
+    "version": "",
+    "data": {
+      "calculate_temp": {
+        "all": 18,
+        "static": 18,
+        "inloop": {
+          "static": 12,
+          "dynamic": 0
+        }
+      }
+    }
+  }
+]

@@ -18,8 +18,7 @@ texture<float, 1, cudaReadModeElementType> t_features;
 texture<float, 1, cudaReadModeElementType> t_features_flipped;
 texture<float, 1, cudaReadModeElementType> t_clusters;
 
-__constant__ float c_clusters[ASSUMED_NR_CLUSTERS *
-                              34]; /* constant memory for cluster centers */
+__constant__ float c_clusters[ASSUMED_NR_CLUSTERS * 34]; /* constant memory for cluster centers */
 
 /* ----------------- invert_mapping() --------------------- */
 /* inverts data array from row-major to column-major.
@@ -62,8 +61,7 @@ __global__ void kmeansPoint(float *features, /* in: [npoints*nfeatures] */
   // block ID
   const unsigned int block_id = gridDim.x * blockIdx.y + blockIdx.x;
   // point/thread ID
-  const unsigned int point_id =
-      block_id * blockDim.x * blockDim.y + threadIdx.x;
+  const unsigned int point_id = block_id * blockDim.x * blockDim.y + threadIdx.x;
 
   int index = -1;
 
@@ -74,15 +72,12 @@ __global__ void kmeansPoint(float *features, /* in: [npoints*nfeatures] */
 
     /* find the cluster center id with min distance to pt */
     for (i = 0; i < nclusters; i++) {
-      int cluster_base_index =
-          i * nfeatures; /* base index of cluster centers for inverted array */
+      int cluster_base_index = i * nfeatures; /* base index of cluster centers for inverted array */
       float ans = 0.0;   /* Euclidean distance sqaure */
 
       for (j = 0; j < nfeatures; j++) {
         int addr = point_id + j * npoints; /* appropriate index of data point */
-        float diff =
-            (tex1Dfetch(t_features, addr) -
-             c_clusters[cluster_base_index + j]); /* distance between a data
+        float diff = (tex1Dfetch(t_features, addr) - c_clusters[cluster_base_index + j]); /* distance between a data
                                                      point to cluster centers */
         ans += diff * diff;                       /* sum of squares */
       }
@@ -104,7 +99,9 @@ __global__ void kmeansPoint(float *features, /* in: [npoints*nfeatures] */
     deltas[threadIdx.x] = 0;
   }
 #endif
+
   if (point_id < npoints) {
+
 #ifdef GPU_DELTA_REDUCTION
     /* if membership changes, increase delta by 1 */
     if (membership[point_id] != index) {
@@ -173,9 +170,7 @@ __global__ void kmeansPoint(float *features, /* in: [npoints*nfeatures] */
     mapping to global array is
     block0[center0[dim0,dim1,dim2,...]center1[dim0,dim1,dim2,...]...]block1[...]...
     ***/
-    block_clusters[(blockIdx.y * gridDim.x + blockIdx.x) * nclusters *
-                       nfeatures +
-                   threadIdx.x] = accumulator;
+    block_clusters[(blockIdx.y * gridDim.x + blockIdx.x) * nclusters * nfeatures + threadIdx.x] = accumulator;
   }
 #endif
 }

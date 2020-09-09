@@ -1,0 +1,15 @@
+[
+  {
+    "version": "",
+    "data": {
+      "euclid": {
+        "all": 5,
+        "static": 5,
+        "inloop": {
+          "static": 0,
+          "dynamic": 0
+        }
+      }
+    }
+  }
+]

@@ -23,14 +23,21 @@ __global__ void Kernel(Node *g_graph_nodes, int *g_graph_edges,
                        bool *g_graph_visited, int *g_cost, int no_of_nodes) {
   int tid = blockIdx.x * MAX_THREADS_PER_BLOCK + threadIdx.x;
   if (tid < no_of_nodes && g_graph_mask[tid]) {
+  // 1/1/0/0
     g_graph_mask[tid] = false;
+    // 2/2/0/0
     for (int i = g_graph_nodes[tid].starting;
          i < (g_graph_nodes[tid].no_of_edges + g_graph_nodes[tid].starting);
          i++) {
+      // 5/5/0/0
       int id = g_graph_edges[i];
+      // 6/6/1/0
       if (!g_graph_visited[id]) {
+        // 7/7/2/0
         g_cost[id] = g_cost[tid] + 1;
+        // 9/9/4/0
         g_updating_graph_mask[id] = true;
+        // 10/10/4/0
       }
     }
   }

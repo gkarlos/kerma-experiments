@@ -1,0 +1,86 @@
+[
+  {
+    "version": "default",
+    "data": {
+      "invert_mapping": {
+        "all": 2,
+        "static": 2,
+        "inloop": {
+          "static": 2,
+          "dynamic": 0
+        }
+      },
+      "kmeansPoint": {
+        "all": 3,
+        "static": 3,
+        "inloop": {
+          "static": 2,
+          "dynamic": 0
+        }
+      }
+    }
+  },
+  {
+    "version": "delta",
+    "data": {
+      "invert_mapping": {
+        "all": 2,
+        "static": 2,
+        "inloop": {
+          "static": 2,
+          "dynamic": 0
+        }
+      },
+      "kmeansPoint": {
+        "all": 14,
+        "static": 14,
+        "inloop": {
+          "static": 5,
+          "dynamic": 0
+        }
+      }
+    }
+  },
+  {
+    "version": "center",
+    "data": {
+      "invert_mapping": {
+        "all": 2,
+        "static": 2,
+        "inloop": {
+          "static": 2,
+          "dynamic": 0
+        }
+      },
+      "kmeansPoint": {
+        "all": 7,
+        "static": 7,
+        "inloop": {
+          "static": 4,
+          "dynamic": 0
+        }
+      }
+    }
+  },
+  {
+    "version": "delta+center",
+    "data": {
+      "invert_mapping": {
+        "all": 2,
+        "static": 2,
+        "inloop": {
+          "static": 2,
+          "dynamic": 0
+        }
+      },
+      "kmeansPoint": {
+        "all": 18,
+        "static": 18,
+        "inloop": {
+          "static": 7,
+          "dynamic": 0
+        }
+      }
+    }
+  }
+]

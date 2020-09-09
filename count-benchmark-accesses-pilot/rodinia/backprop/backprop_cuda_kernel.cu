@@ -26,14 +26,17 @@ __global__ void bpnn_layerforward_CUDA(float *input_cuda,
 
   if (tx == 0)
     input_node[ty] = input_cuda[index_in];
+  // 2/2/0/0
 
   __syncthreads();
 
   weight_matrix[ty][tx] = input_hidden_cuda[index];
+  // 4/4/0/0
 
   __syncthreads();
 
   weight_matrix[ty][tx] = weight_matrix[ty][tx] * input_node[ty];
+  // 7/7/0/0
 
   __syncthreads();
 
@@ -47,29 +50,19 @@ __global__ void bpnn_layerforward_CUDA(float *input_cuda,
 
     __syncthreads();
   }
+  // 10/10/3/0
 
   //__syncthreads();
 
   input_hidden_cuda[index] = weight_matrix[ty][tx];
-
-  /*
-     for ( unsigned int i = 2 ; i <= HEIGHT ; i *= 2){
-
-             unsigned int power_two = i - 1;
-
-             if( (ty & power_two) == 0 ) {
-                  weight_matrix[ty][tx] = weight_matrix[ty][tx] +
-     weight_matrix[ty + power_two/2][tx];
-             }
-
-     }
-     */
+  // 12/12/3/0
 
   __syncthreads();
 
   if (tx == 0) {
     hidden_partial_sum[by * hid + ty] = weight_matrix[tx][ty];
   }
+  // 14/14/3/0
 }
 
 __global__ void bpnn_adjust_weights_cuda(float *delta, int hid, float *ly,
@@ -87,14 +80,19 @@ __global__ void bpnn_adjust_weights_cuda(float *delta, int hid, float *ly,
   // momentum = 0.3;
 
   w[index] += ((ETA * delta[index_x] * ly[index_y]) + (MOMENTUM * oldw[index]));
+  // 5/5/0/0
+
   oldw[index] =
       ((ETA * delta[index_x] * ly[index_y]) + (MOMENTUM * oldw[index]));
+  // 9/9/0/0
 
   __syncthreads();
 
   if (ty == 0 && by == 0) {
     w[index_x] += ((ETA * delta[index_x]) + (MOMENTUM * oldw[index_x]));
+    // 13/13/0/0
     oldw[index_x] = ((ETA * delta[index_x]) + (MOMENTUM * oldw[index_x]));
+    // 16/16/0/0
   }
 }
 #endif

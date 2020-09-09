@@ -1,0 +1,53 @@
+[
+  {
+    "version": "float",
+    "data": {
+      "find_index_kernel": {
+        "all": 6,
+        "static": 4,
+        "inloop": {
+          "static": 2,
+          "dynamic": 0
+        }
+      },
+      "normalize_weights_kernel": {
+        "all": 18,
+        "static": 18,
+        "inloop": {
+          "static": 3,
+          "dynamic": 0
+        }
+      },
+      "sum_kernel": {
+        "all": 2,
+        "static": 2,
+        "inloop": {
+          "static": 1,
+          "dynamic": 0
+        }
+      },
+      "likelihood_kernel": {
+        "all": 46,
+        "static": 44,
+        "inloop": {
+          "sta-inloop": 12,
+          "dyn-inloop": 2
+        }
+      }
+    }
+  }
+  ,
+  {
+    "version": "naive",
+    "data": {
+      "kernel": {
+        "all": 6,
+        "static": 4,
+        "inloop": {
+          "static": 2,
+          "dynamic": 0
+        }
+      }
+    }
+  }
+]

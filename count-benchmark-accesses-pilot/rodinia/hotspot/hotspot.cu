@@ -151,9 +151,12 @@ __global__ void calculate_temp(int iteration,   // number of iteration
       IN_RANGE(loadXidx, 0, grid_cols - 1)) {
     temp_on_cuda[ty][tx] = temp_src[index]; // Load the temperature data from
                                             // global memory to shared memory
-    power_on_cuda[ty][tx] =
-        power[index]; // Load the power data from global memory to shared memory
+    // 2/2/0/0
+
+    power_on_cuda[ty][tx] = power[index]; // Load the power data from global memory to shared memory
+    // 4/4/0/0
   }
+
   __syncthreads();
 
   // effective range within this block that falls within
@@ -197,11 +200,17 @@ __global__ void calculate_temp(int iteration,   // number of iteration
                               Rx_1 +
                           (amb_temp - temp_on_cuda[ty][tx]) * Rz_1);
     }
+    // 14/14/10/0
+
     __syncthreads();
+    
     if (i == iteration - 1)
       break;
+    
     if (computed) // Assign the computation range
       temp_on_cuda[ty][tx] = temp_t[ty][tx];
+    // 16/16/12/0
+
     __syncthreads();
   }
 
@@ -211,6 +220,7 @@ __global__ void calculate_temp(int iteration,   // number of iteration
   if (computed) {
     temp_dst[index] = temp_t[ty][tx];
   }
+  // 18/18/12/0
 }
 
 /*

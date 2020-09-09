@@ -48,12 +48,11 @@ int parseCommandline(int argc, char *argv[], char* filename,int *r,float *lat,fl
 */
 __global__ void euclid(LatLong *d_locations, float *d_distances, int numRecords,float lat, float lng)
 {
-	//int globalId = gridDim.x * blockDim.x * blockIdx.y + blockDim.x * blockIdx.x + threadIdx.x;
 	int globalId = blockDim.x * ( gridDim.x * blockIdx.y + blockIdx.x ) + threadIdx.x; // more efficient
-    LatLong *latLong = d_locations+globalId;
-    if (globalId < numRecords) {
-        float *dist=d_distances+globalId;
-        *dist = (float)sqrt((lat-latLong->lat)*(lat-latLong->lat)+(lng-latLong->lng)*(lng-latLong->lng));
+  LatLong *latLong = d_locations+globalId;
+  if (globalId < numRecords) {
+    float *dist = d_distances + globalId;
+    *dist = (float)sqrt((lat - latLong->lat) * (lat - latLong->lat) + (lng - latLong->lng) * (lng - latLong->lng));
 	}
 }
 

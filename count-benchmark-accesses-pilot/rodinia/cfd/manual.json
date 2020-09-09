@@ -1,0 +1,41 @@
+[
+  {
+    "version": "",
+    "data": {
+      "cuda_initialize_variables": {
+        "all": 2,
+        "static": 2,
+        "inloop": {
+          "static": 2,
+          "dynamic": 0
+        }
+      },
+      "cuda_compute_step_factor": {
+        "all": 7,
+        "static": 7,
+        "inloop": {
+          "static": 0,
+          "dynamic": 0
+        }
+      },
+      "cuda_compute_flux": {
+        "all": 34,
+        "static": 34,
+        "inloop": {
+          "static": 24,
+          "dynamic": 0
+        }
+      },
+      "cuda_time_step": {
+        "all": 16,
+        "static": 16,
+        "inloop": {
+          "static": 0,
+          "dynamic": 0
+        }
+      }
+    }
+  }
+]
+
+
