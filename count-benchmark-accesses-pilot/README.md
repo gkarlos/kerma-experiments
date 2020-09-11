@@ -16,7 +16,9 @@ TODO
 - cfd<sup id="a1">[1](#f1)</sup>
 - gaussian
 - hotspot
+- hybridsort
 - kmeans
+- lavaMD
 - lud
 - nn (+check IR, +maybe fix manually)
 - nw
@@ -25,7 +27,7 @@ TODO
 - srad
 - streamcluster
 
-### Not selected (maybe count manually)
+### Not selected
 - b+tree (complex struct arguments)
 - dwt2d (c++ templates)
 - heartwall (links with avilib)
@@ -33,8 +35,6 @@ TODO
 - leukocyte
 
 ### Fix manually (maybe)
-- hybridsort
-- lavaMD
 - myocyte
 
 <a id="f1"><b>[1]</b></a> only using euler3d.cu the rest are basically identical except for using `double` instead of `float` types.[↩](#a1)
