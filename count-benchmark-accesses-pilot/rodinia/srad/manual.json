@@ -1,0 +1,76 @@
+[
+  {
+    "version": "v1",
+    "data": {
+      "extract": {
+        "all": 2,
+        "static": 2,
+        "inloop": {
+          "static": 0,
+          "dynamic": 0
+        }
+      },
+      "prepare": {
+        "all": 5,
+        "static": 5,
+        "inloop": {
+          "static": 0,
+          "dynamic": 0
+        }
+      },
+      "compress": {
+        "all": 2,
+        "static": 2,
+        "inloop": {
+          "static": 0,
+          "dynamic": 0
+        }
+      },
+      "reduce": {
+        "all": 40,
+        "static": 40,
+        "inloop": {
+          "static": 24,
+          "dynamic": 0
+        }
+      },
+      "srad": {
+        "all": 14,
+        "static": 5,
+        "inloop": {
+          "static": 0,
+          "dynamic": 0
+        }
+      },
+      "srad2": {
+        "all": 12,
+        "static": 10,
+        "inloop": {
+          "static": 0,
+          "dynamic": 0
+        }
+      }
+    }
+  },
+  {
+    "version": "v2",
+    "data": {
+      "srad_cuda_1": {
+        "all": 62,
+        "static": 62,
+        "inloop": {
+          "static": 0,
+          "dynamic": 0
+        }
+      },
+      "srad_cuda_2": {
+        "all": 29,
+        "static": 29,
+        "inloop": {
+          "static": 0,
+          "dynamic": 0
+        }
+      }
+    }
+  }
+]

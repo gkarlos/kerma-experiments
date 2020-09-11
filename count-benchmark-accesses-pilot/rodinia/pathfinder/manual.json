@@ -5,8 +5,10 @@
       "dynproc_kernel": {
         "all": 11,
         "static": 11,
-        "sta-inloop": 7,
-        "dyn-inloop": 0
+        "inloop": {
+          "static": 7,
+          "dynamic": 0
+        }
       }
     }
   }

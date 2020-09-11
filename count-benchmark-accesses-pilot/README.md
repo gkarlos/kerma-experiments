@@ -17,10 +17,13 @@ TODO
 - gaussian
 - hotspot
 - kmeans
+- lud
 - nn (+check IR, +maybe fix manually)
 - nw
 - particlefilter
 - pathfinder
+- srad
+- streamcluster
 
 ### Not selected (maybe count manually)
 - b+tree (complex struct arguments)
@@ -32,9 +35,6 @@ TODO
 ### Fix manually (maybe)
 - hybridsort
 - lavaMD
-- lud
 - myocyte
-- srad
-- streamcluster (+ check IR)
 
 <a id="f1"><b>[1]</b></a> only using euler3d.cu the rest are basically identical except for using `double` instead of `float` types.[↩](#a1)

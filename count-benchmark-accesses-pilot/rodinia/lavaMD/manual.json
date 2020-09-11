@@ -1,0 +1,15 @@
+[
+  {
+    "version": "",
+    "data": {
+      "kernel_gpu_cuda": {
+        "all": 32,
+        "static": 29,
+        "inloop": {
+          "static": 28,
+          "dynamic": 3
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,15 @@
+[
+  {
+    "version": "",
+    "data": {
+      "kernel_compute_cost": {
+        "all": 15,
+        "static": 11,
+        "inloop": {
+          "static": 4,
+          "dynamic": 0
+        }
+      }
+    }
+  }
+]

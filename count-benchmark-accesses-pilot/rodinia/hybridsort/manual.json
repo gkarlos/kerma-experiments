@@ -1,0 +1,63 @@
+[
+  {
+    "version": "",
+    "data": {
+      "bucketcount": {
+        "all": 8,
+        "static": 7,
+        "inloop": {
+          "static": 5,
+          "dynamic": 1
+        }
+      },
+      "bucketprefixoffset": {
+        "all": 3,
+        "static": 3,
+        "inloop": {
+          "static": 2,
+          "dynamic": 0
+        }
+      },
+      "bucketsort": {
+        "all": 8,
+        "static": 7,
+        "inloop": {
+          "static": 7,
+          "dynamic": 1
+        }
+      },
+      "mergeSortFirst": {
+        "all": 2,
+        "static": 2,
+        "inloop": {
+          "static": 0,
+          "dynamic": 0
+        }
+      },
+      "mergeSortPass": {
+        "all": 13,
+        "static": 8,
+        "inloop": {
+          "static": 4,
+          "dynamic": 4
+        }
+      },
+      "mergepack": {
+        "all": 7,
+        "static": 3,
+        "inloop": {
+          "static": 0,
+          "dynamic": 0
+        }
+      },
+      "histogram1024Kernel": {
+        "all": 8,
+        "static": 5,
+        "inloop": {
+          "static": 5,
+          "dynamic": 3
+        }
+      }
+    }
+  }
+]

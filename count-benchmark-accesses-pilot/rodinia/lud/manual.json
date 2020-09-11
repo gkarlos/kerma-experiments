@@ -1,0 +1,31 @@
+[
+  {
+    "version": "",
+    "data": {
+      "lud_diagonal": {
+        "all": 14,
+        "static": 14,
+        "inloop": {
+          "static": 14,
+          "dynamic": 0
+        }
+      },
+      "lud_perimeter": {
+        "all": 23,
+        "static": 23,
+        "inloop": {
+          "static": 23,
+          "dynamic": 0
+        }
+      },
+      "lud_internal": {
+        "all": 8,
+        "static": 8,
+        "inloop": {
+          "static": 2,
+          "dynamic": 0
+        }
+      }
+    }
+  }
+]
