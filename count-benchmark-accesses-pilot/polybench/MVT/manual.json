@@ -1,0 +1,23 @@
+[
+  {
+    "version": "",
+    "data": {
+      "mvt_kernel1": {
+        "all": 4,
+        "static": 4,
+        "inloop": {
+          "static": 4,
+          "dynamic": 0
+        }
+      },
+      "mvt_kernel2": {
+        "all": 4,
+        "static": 4,
+        "inloop": {
+          "static": 4,
+          "dynamic": 0
+        }
+      }
+    }
+  }
+]

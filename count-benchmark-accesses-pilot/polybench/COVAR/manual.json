@@ -1,0 +1,31 @@
+[
+  {
+    "version": "",
+    "data": {
+      "mean_kernel": {
+        "all": 6,
+        "static": 6,
+        "inloop": {
+          "static": 3,
+          "dynamic": 0
+        }
+      },
+      "reduce_kernel": {
+        "all": 3,
+        "static": 3,
+        "inloop": {
+          "static": 3,
+          "dynamic": 0
+        }
+      },
+      "covar_kernel": {
+        "all": 7,
+        "static": 7,
+        "inloop": {
+          "static": 7,
+          "dynamic": 0
+        }
+      }
+    }
+  }
+]

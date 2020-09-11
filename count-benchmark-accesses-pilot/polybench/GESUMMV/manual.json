@@ -1,0 +1,15 @@
+[
+  {
+    "version": "",
+    "data": {
+      "gesummv_kernel": {
+        "all": 11,
+        "static": 11,
+        "inloop": {
+          "static": 8,
+          "dynamic": 0
+        }
+      }
+    }
+  }
+]

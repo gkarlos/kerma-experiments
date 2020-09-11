@@ -1,0 +1,15 @@
+[
+  {
+    "version": "",
+    "data": {
+      "gemm_kernel": {
+        "all": 6,
+        "static": 6,
+        "inloop": {
+          "static": 4,
+          "dynamic": 0
+        }
+      }
+    }
+  }
+]

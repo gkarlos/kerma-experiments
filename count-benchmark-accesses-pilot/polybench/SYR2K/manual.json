@@ -1,0 +1,15 @@
+[
+  {
+    "version": "",
+    "data": {
+      "syr2k_kernel": {
+        "all": 8,
+        "static": 8,
+        "inloop": {
+          "static": 6,
+          "dynamic": 0
+        }
+      }
+    }
+  }
+]

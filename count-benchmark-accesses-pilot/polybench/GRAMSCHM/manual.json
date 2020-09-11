@@ -1,0 +1,31 @@
+[
+  {
+    "version": "",
+    "data": {
+      "gramschmidt_kernel1": {
+        "all": 3,
+        "static": 3,
+        "inloop": {
+          "static": 2,
+          "dynamic": 0
+        }
+      },
+      "gramschmidt_kernel2": {
+        "all": 3,
+        "static": 3,
+        "inloop": {
+          "static": 0,
+          "dynamic": 0
+        }
+      },
+      "gramschmidt_kernel3": {
+        "all": 9,
+        "static": 9,
+        "inloop": {
+          "static": 8,
+          "dynamic": 0
+        }
+      }
+    }
+  }
+]

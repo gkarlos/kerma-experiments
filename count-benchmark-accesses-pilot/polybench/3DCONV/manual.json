@@ -1,0 +1,15 @@
+[
+  {
+    "version": "",
+    "data": {
+      "convolution3D_kernel": {
+        "all": 16,
+        "static": 16,
+        "inloop": {
+          "static": 0,
+          "dynamic": 0
+        }
+      }
+    }
+  }
+]

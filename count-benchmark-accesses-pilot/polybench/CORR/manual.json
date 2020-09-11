@@ -1,0 +1,39 @@
+[
+  {
+    "version": "",
+    "data": {
+      "mean_kernel": {
+        "all": 6,
+        "static": 6,
+        "inloop": {
+          "static": 3,
+          "dynamic": 0
+        }
+      },
+      "std_kernel": {
+        "all": 12,
+        "static": 12,
+        "inloop": {
+          "static": 6,
+          "dynamic": 0
+        }
+      },
+      "reduce_kernel": {
+        "all": 6,
+        "static": 6,
+        "inloop": {
+          "static": 0,
+          "dynamic": 0
+        }
+      },
+      "corr_kernel": {
+        "all": 8,
+        "static": 8,
+        "inloop": {
+          "static": 7,
+          "dynamic": 0
+        }
+      }
+    }
+  }
+]

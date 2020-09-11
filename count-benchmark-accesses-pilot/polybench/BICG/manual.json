@@ -1,0 +1,23 @@
+[
+  {
+    "version": "",
+    "data": {
+      "bicg_kernel1": {
+        "all": 5,
+        "static": 5,
+        "inloop": {
+          "static": 4,
+          "dynamic": 0
+        }
+      },
+      "bicg_kernel2": {
+        "all": 5,
+        "static": 5,
+        "inloop": {
+          "static": 4,
+          "dynamic": 0
+        }
+      }
+    }
+  }
+]

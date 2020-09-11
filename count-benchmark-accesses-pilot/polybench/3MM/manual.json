@@ -1,0 +1,31 @@
+[
+  {
+    "version": "",
+    "data": {
+      "mm3_kernel1": {
+        "all": 4,
+        "static": 4,
+        "inloop": {
+          "static": 4,
+          "dynamic": 0
+        }
+      },
+      "mm3_kernel2": {
+        "all": 4,
+        "static": 4,
+        "inloop": {
+          "static": 4,
+          "dynamic": 0
+        }
+      },
+      "mm3_kernel3": {
+        "all": 4,
+        "static": 4,
+        "inloop": {
+          "static": 4,
+          "dynamic": 0
+        }
+      }
+    }
+  }
+]

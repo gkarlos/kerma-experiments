@@ -1,3 +1,11 @@
 {
-  "clang-format.executable": "${env.LLVM_HOME}/bin/clang-format"
+  "clang-format.executable": "${env.LLVM_HOME}/bin/clang-format",
+  "files.associations": {
+    "*.cu": "cpp",
+    "*.cuh": "cpp",
+    "*.tcc": "cpp",
+    "cmath": "cpp",
+    "complex": "cpp"
+  },
+  "python.pythonPath": ".env/bin/python"
 }

@@ -7,7 +7,7 @@ import numpy as np
 VERBOSE="-v" in sys.argv
 MANUAL_FILE="manual.json"
 PLOTS_DIR="plots"
-SUITES=['rodinia']
+SUITES=['rodinia', 'polybench']
 
 def msg(*args, **kwargs):
     if VERBOSE:
@@ -93,131 +93,134 @@ for suite in SUITES:
 ### Per-kernel plot
 ###
 msg("+ Build Per-kernel plot")
-rodinia = data['rodinia']
-rodinia_kernel_plot, ax = plt.subplots(figsize=(9,5))
+for suite in SUITES:
+    suite_data = data[suite]
+    # suite_data = data['rodinia']
+    suite_kernel_plot, ax = plt.subplots(figsize=(max(6,len(suite_data['manual']['kern']) * 0.45),5))
 
-x_axis_groups = []
-data_static_percent = []
-data_inloop_static_percent = []
-data_dynamic_percent = []
-data_inloop_dynamic_percent = []
+    x_axis_groups = []
+    data_static_percent = []
+    data_inloop_static_percent = []
+    data_dynamic_percent = []
+    data_inloop_dynamic_percent = []
 
-for version in rodinia['manual']['kern']:
-    x_axis_groups.append(list(rodinia['manual']['kern'][version].keys()))
-    for kernel in rodinia['manual']['kern'][version]:
-        kernel_data = rodinia['manual']['kern'][version][kernel]
-        data_static_percent.append(kernel_data[1] / kernel_data[0])
-        data_inloop_static_percent.append(kernel_data[2] / kernel_data[0])
-        data_dynamic_percent.append((kernel_data[0] - kernel_data[1]) / kernel_data[0])
-        data_inloop_dynamic_percent.append(kernel_data[3] / kernel_data[0])
+    for version in suite_data['manual']['kern']:
+        x_axis_groups.append(list(suite_data['manual']['kern'][version].keys()))
+        for kernel in suite_data['manual']['kern'][version]:
+            kernel_data = suite_data['manual']['kern'][version][kernel]
+            data_static_percent.append(kernel_data[1] / kernel_data[0])
+            data_inloop_static_percent.append(kernel_data[2] / kernel_data[0])
+            data_dynamic_percent.append((kernel_data[0] - kernel_data[1]) / kernel_data[0])
+            data_inloop_dynamic_percent.append(kernel_data[3] / kernel_data[0])
 
-x_axis_labels = [kernel for kernels in x_axis_groups for kernel in kernels]
-x_axis = np.arange(0,len(x_axis_labels),1)
+    x_axis_labels = [kernel for kernels in x_axis_groups for kernel in kernels]
+    x_axis = np.arange(0,len(x_axis_labels),1)
 
-bars_static = ax.bar(x_axis, data_static_percent, color=(0.2, 0.4, 0.6, 0.6), tick_label=x_axis_labels)
-bars_inloop_static = ax.bar(x_axis, data_inloop_static_percent)
-bars_dynamic = ax.bar(x_axis, data_dynamic_percent, bottom=data_static_percent,color="coral")
-bars_inloop_dynamic = ax.bar(x_axis, data_inloop_dynamic_percent, bottom=[(1-v) for v in data_inloop_dynamic_percent], color="red")
+    bars_static = ax.bar(x_axis, data_static_percent, color=(0.2, 0.4, 0.6, 0.6), tick_label=x_axis_labels)
+    bars_inloop_static = ax.bar(x_axis, data_inloop_static_percent)
+    bars_dynamic = ax.bar(x_axis, data_dynamic_percent, bottom=data_static_percent,color="coral")
+    bars_inloop_dynamic = ax.bar(x_axis, data_inloop_dynamic_percent, bottom=[(1-v) for v in data_inloop_dynamic_percent], color="red")
 
-axr = ax.twinx()
-axr.set_ylim(1,0)
+    axr = ax.twinx()
+    axr.set_ylim(1,0)
 
-ax.tick_params(axis='x', rotation=90)
-ax.set_ylabel("Ratio over #MemOps")
-ax.set_title("MemOp instructions in Rodinia benchmarks (per kernel)", y=1.05)
+    ax.tick_params(axis='x', rotation=90)
+    ax.set_ylabel("Ratio over #MemOps")
+    ax.set_title("MemOp instructions in " + suite + " benchmarks (per kernel)", y=1.05)
 
-cmap = plt.cm.get_cmap('tab20', len(x_axis_groups))
-colors = []
+    cmap = plt.cm.get_cmap('tab20', len(x_axis_groups))
+    colors = []
 
-for i in range(len(x_axis_groups)):
-    for lbl in x_axis_groups[i]:
-        colors.append(cmap(i))
+    for i in range(len(x_axis_groups)):
+        for lbl in x_axis_groups[i]:
+            colors.append(cmap(i))
 
-for i in range(len(colors)):
-    ax.get_xticklabels()[i].set_color(colors[i])
+    for i in range(len(colors)):
+        ax.get_xticklabels()[i].set_color(colors[i])
 
 
-idx=0
-for version in rodinia['manual']['kern']:
-    for kernel in rodinia['manual']['kern'][version]:
-        kernel_data = rodinia['manual']['kern'][version][kernel]
-        if kernel_data[0] > 0:
-            bar = bars_static[idx]
-            yval = bar.get_height()
-            ax.text( bar.get_x() + bar.get_width()/2.0, yval - 0.05, str(kernel_data[1]),fontsize=6, ha='center', alpha=0.5)
-        if kernel_data[2] > 0:
-            bar = bars_inloop_static[idx]
-            yval = bar.get_height()
-            ax.text( bar.get_x() + bar.get_width()/2.0, yval - 0.05, str(kernel_data[2]),fontsize=6, ha='center', alpha=0.5)
-        if kernel_data[0] - kernel_data[1] > 0: #dynamic
-            ax.text(bar.get_x() + bar.get_width()/2.0, 1.005 ,str(kernel_data[0] - kernel_data[1])+'/'+str(kernel_data[3]),\
-                    va='bottom', ha='center', alpha=0.5, fontsize=6)
-        idx = idx + 1
+    idx=0
+    for version in suite_data['manual']['kern']:
+        for kernel in suite_data['manual']['kern'][version]:
+            kernel_data = suite_data['manual']['kern'][version][kernel]
+            if kernel_data[0] > 0:
+                bar = bars_static[idx]
+                yval = bar.get_height()
+                ax.text( bar.get_x() + bar.get_width()/2.0, yval - 0.05, str(kernel_data[1]),fontsize=6, ha='center', alpha=0.5)
+            if kernel_data[2] > 0:
+                bar = bars_inloop_static[idx]
+                yval = bar.get_height()
+                ax.text( bar.get_x() + bar.get_width()/2.0, yval - 0.05, str(kernel_data[2]),fontsize=6, ha='center', alpha=0.5)
+            if kernel_data[0] - kernel_data[1] > 0: #dynamic
+                ax.text(bar.get_x() + bar.get_width()/2.0, 1.005 ,str(kernel_data[0] - kernel_data[1])+'/'+str(kernel_data[3]),\
+                        va='bottom', ha='center', alpha=0.5, fontsize=6)
+            idx = idx + 1
 
-ax.legend(['static', 'static_inloop', 'dyn', 'dyn_inloop'], loc='upper left', prop={'size':6.5}, ncol=1,bbox_to_anchor=(-0.1, -0.1))
+    ax.legend(['static', 'static_inloop', 'dyn', 'dyn_inloop'], loc='upper left', prop={'size':6.5}, ncol=1,bbox_to_anchor=(-0.15, -0.1))
 
-rodinia_kernel_plot.tight_layout()
-rodinia_kernel_plot.savefig(os.path.join(plot_dir, 'rodinia_manual_per_kernel.png'))
+    suite_kernel_plot.tight_layout()
+    suite_kernel_plot.savefig(os.path.join(plot_dir, suite + '_manual_per_kernel.png'))
 
 
 ###
 ### Cumulative plot
 ###
 msg("+ Building Cumulative plot")
-rodinia = data['rodinia']
-x_axis=rodinia['manual']['all']['x-axis']
+for suite in SUITES:
+    suite_data = data[suite]
+    x_axis=suite_data['manual']['all']['x-axis']
 
-rodinia_manual_plot = plt.figure()
-ax = rodinia_manual_plot.add_subplot(111)
+    suite_manual_plot = plt.figure()
+    ax = suite_manual_plot.add_subplot(111)
 
-data_static_percent = [ (sta_v / all_v) for (sta_v,all_v) in zip(rodinia['manual']['all']['values']['static'],\
-                                                                 rodinia['manual']['all']['values']['all'])]
-data_inloop_static_percent = [ (sta_v / all_v) for (sta_v,all_v) in zip(rodinia['manual']['all']['values']['inloop']['static'],\
-                                                                 rodinia['manual']['all']['values']['all'])]
-data_dynamic_percent = [ (dyn_v / all_v) for (dyn_v,all_v) in zip(rodinia['manual']['all']['values']['dynamic'],\
-                                                                  rodinia['manual']['all']['values']['all'])]
-data_inloop_dynamic_percent = [ (dyn_v / all_v) for (dyn_v,all_v) in zip(rodinia['manual']['all']['values']['inloop']['dynamic'],\
-                                                                 rodinia['manual']['all']['values']['all'])]
+    data_static_percent = [ (sta_v / all_v) for (sta_v,all_v) in zip(suite_data['manual']['all']['values']['static'],\
+                                                                     suite_data['manual']['all']['values']['all'])]
+    data_inloop_static_percent = [ (sta_v / all_v) for (sta_v,all_v) in zip(suite_data['manual']['all']['values']['inloop']['static'],\
+                                                                            suite_data['manual']['all']['values']['all'])]
+    data_dynamic_percent = [ (dyn_v / all_v) for (dyn_v,all_v) in zip(suite_data['manual']['all']['values']['dynamic'],\
+                                                                      suite_data['manual']['all']['values']['all'])]
+    data_inloop_dynamic_percent = [ (dyn_v / all_v) for (dyn_v,all_v) in zip(suite_data['manual']['all']['values']['inloop']['dynamic'],\
+                                                                             suite_data['manual']['all']['values']['all'])]
 
-bars_static = ax.bar(x_axis, data_static_percent,color=(0.2, 0.4, 0.6, 0.6))
-bars_inloop_static = ax.bar(x_axis, data_inloop_static_percent)
-bars_dynamic = ax.bar(x_axis, data_dynamic_percent, bottom=[(1 - v) for v in data_dynamic_percent],color="coral")
-bars_inloop_dynamic = ax.bar(x_axis, data_inloop_dynamic_percent, bottom=[(1-v) for v in data_inloop_dynamic_percent], color="red")
+    bars_static = ax.bar(x_axis, data_static_percent,color=(0.2, 0.4, 0.6, 0.6))
+    bars_inloop_static = ax.bar(x_axis, data_inloop_static_percent)
+    bars_dynamic = ax.bar(x_axis, data_dynamic_percent, bottom=[(1 - v) for v in data_dynamic_percent],color="coral")
+    bars_inloop_dynamic = ax.bar(x_axis, data_inloop_dynamic_percent, bottom=[(1-v) for v in data_inloop_dynamic_percent], color="red")
 
-for i,bar in enumerate(bars_static):
-    if rodinia['manual']['all']['values']['static'][i] > 0:
-        yval = bar.get_height()
-        ax.text( bar.get_x() + bar.get_width()/2.0, yval - 0.05, str(rodinia['manual']['all']['values']['static'][i]),\
-                    fontsize=7, ha='center', alpha=0.5)
+    for i,bar in enumerate(bars_static):
+        if suite_data['manual']['all']['values']['static'][i] > 0:
+            yval = bar.get_height()
+            ax.text( bar.get_x() + bar.get_width()/2.0, yval - 0.05, str(suite_data['manual']['all']['values']['static'][i]),\
+                        fontsize=7, ha='center', alpha=0.5)
 
-for i,bar in enumerate(bars_inloop_static):
-    if rodinia['manual']['all']['values']['inloop']['static'][i] > 0:
-        yval = bar.get_height()
-        ax.text( bar.get_x() + bar.get_width()/2.0, yval - 0.05, str(rodinia['manual']['all']['values']['inloop']['static'][i]),\
-                    fontsize=7, ha='center', alpha=0.5)
+    for i,bar in enumerate(bars_inloop_static):
+        if suite_data['manual']['all']['values']['inloop']['static'][i] > 0:
+            yval = bar.get_height()
+            ax.text( bar.get_x() + bar.get_width()/2.0, yval - 0.05, str(suite_data['manual']['all']['values']['inloop']['static'][i]),\
+                        fontsize=7, ha='center', alpha=0.5)
 
-for i,bar in enumerate(bars_dynamic):
-    if rodinia['manual']['all']['values']['dynamic'][i] > 0:
-        ax.text(bar.get_x() + bar.get_width()/2.0, 1.01,
-            str(rodinia['manual']['all']['values']['dynamic'][i])+'/'+\
-            str(rodinia['manual']['all']['values']['inloop']['dynamic'][i]),\
-                va='bottom', ha='center', alpha=0.5, fontsize=7)
+    for i,bar in enumerate(bars_dynamic):
+        if suite_data['manual']['all']['values']['dynamic'][i] > 0:
+            ax.text(bar.get_x() + bar.get_width()/2.0, 1.01,
+                str(suite_data['manual']['all']['values']['dynamic'][i])+'/'+\
+                str(suite_data['manual']['all']['values']['inloop']['dynamic'][i]),\
+                    va='bottom', ha='center', alpha=0.5, fontsize=7)
 
-ax.legend(['static', 'static_inloop', 'dyn', 'dyn_inloop'], loc='upper left', prop={'size':6.5}, ncol=2,bbox_to_anchor=(-0.15, -0.4))
-ax.set_ylim(0,1);
+    ax.legend(['static', 'static_inloop', 'dyn', 'dyn_inloop'], loc='upper left', prop={'size':6.5}, ncol=2,bbox_to_anchor=(-0.15, -0.4))
+    ax.set_ylim(0,1);
 
-plt.xticks(rotation=90,figure=rodinia_manual_plot)
+    plt.xticks(rotation=90,figure=suite_manual_plot)
 
-ax.set_ylabel("Ratio over #MemOps")
-plt.title("MemOp instructions in Rodinia benchmarks (cumulative)", y=1.05,figure=rodinia_manual_plot)
+    ax.set_ylabel("Ratio over #MemOps")
+    plt.title("MemOp instructions in " + suite + " benchmarks (cumulative)", y=1.05,figure=suite_manual_plot)
 
-axr = ax.twinx()
-axr.set_ylim(1,0)
+    axr = ax.twinx()
+    axr.set_ylim(1,0)
 
-msg("+ Writing cumulative plot to file")
+    msg("+ Writing cumulative plot to file")
 
-rodinia_manual_plot.tight_layout()
-rodinia_manual_plot.savefig(os.path.join(plot_dir, 'rodinia_manual_cumulative.png'), bbox_inches = "tight")
+    suite_manual_plot.tight_layout()
+    suite_manual_plot.savefig(os.path.join(plot_dir, suite + '_manual_cumulative.png'), bbox_inches = "tight")
 
 # restore cwd
 os.chdir(pre_wd)

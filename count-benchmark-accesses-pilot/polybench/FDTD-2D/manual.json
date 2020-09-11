@@ -1,0 +1,31 @@
+[
+  {
+    "version": "",
+    "data": {
+      "fdtd_step1_kernel": {
+        "all": 4,
+        "static": 4,
+        "inloop": {
+          "static": 4,
+          "dynamic": 0
+        }
+      },
+      "fdtd_step2_kernel": {
+        "all": 4,
+        "static": 4,
+        "inloop": {
+          "static": 4,
+          "dynamic": 0
+        }
+      },
+      "fdtd_step3_kernel": {
+        "all": 6,
+        "static": 6,
+        "inloop": {
+          "static": 6,
+          "dynamic": 0
+        }
+      }
+    }
+  }
+]
