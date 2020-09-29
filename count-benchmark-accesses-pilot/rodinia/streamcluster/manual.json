@@ -3,7 +3,7 @@
     "version": "",
     "data": {
       "kernel_compute_cost": {
-        "all": 15,
+        "all": 13,
         "static": 11,
         "inloop": {
           "static": 4,

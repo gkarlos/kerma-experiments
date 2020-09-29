@@ -90,7 +90,7 @@ kernel_compute_cost(int num, int dim, long x, Point *p, int K, int stride,
 		else
 		{
 			lower[center_table_d[p[tid].assign]] += p[tid].cost - x_cost;
-			// 15/11/4/0
+			// 13/11/2/0 // inner accesses used to calculate index are not re-read. Values are just taken from the stack
 		}
 	}
 }

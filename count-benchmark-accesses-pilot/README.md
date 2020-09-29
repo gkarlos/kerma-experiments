@@ -7,7 +7,11 @@ in order to determine for how many of those we can infer their location statical
 - Values for kernel scalar arguments
 
 ## Build and run
-TODO
+```
+python3 -m venv .env
+source .env/bin/activate
+make plots
+```
 
 ## Rodinia
 ### Selected

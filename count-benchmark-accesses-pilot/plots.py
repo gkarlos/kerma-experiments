@@ -7,7 +7,7 @@ import numpy as np
 VERBOSE="-v" in sys.argv
 MANUAL_FILE="manual.json"
 PLOTS_DIR="plots"
-SUITES=['rodinia', 'polybench']
+SUITES=['rodinia', 'polybench', 'nvidia-samples-10.1']
 
 def msg(*args, **kwargs):
     if VERBOSE:
@@ -54,6 +54,23 @@ data={
             },
             "kern": { }
         }
+    },
+    "nvidia-samples-10.1": {
+        "manual": {
+            "all": {
+                "x-axis": [],
+                'values': {
+                    'all': [],
+                    "static": [],
+                    "dynamic": [],
+                    "inloop": {
+                        "static": [],
+                        "dynamic": []
+                    }
+                }
+            },
+            "kern": { }
+        }
     }
 }
 
@@ -62,6 +79,8 @@ for suite in SUITES:
     suite_dir = os.path.join(cwd, suite)
     for bench in sorted(os.listdir(suite_dir)):
        datafile_manual = os.path.join(suite_dir, bench, MANUAL_FILE)
+       if not os.path.exists(datafile_manual):
+        continue
        with open(datafile_manual) as f:
            json_data = json.load(f)
            for version_data in json_data:
