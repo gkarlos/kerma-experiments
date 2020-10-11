@@ -36,7 +36,7 @@
       },
       "srad": {
         "all": 14,
-        "static": 5,
+        "static": 10,
         "inloop": {
           "static": 0,
           "dynamic": 0
