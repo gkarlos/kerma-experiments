@@ -43,7 +43,7 @@
         }
       },
       "mergepack": {
-        "all": 7,
+        "all": 5,
         "static": 3,
         "inloop": {
           "static": 0,
