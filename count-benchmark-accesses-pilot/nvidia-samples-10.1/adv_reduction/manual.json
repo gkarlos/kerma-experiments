@@ -1,0 +1,63 @@
+[
+  {
+    "version": "",
+    "data": {
+      "reduce0": {
+        "all": 7,
+        "static": 7,
+        "inloop": {
+          "static": 3,
+          "dynamic": 0
+        }
+      },
+      "reduce1": {
+        "all": 7,
+        "static": 7,
+        "inloop": {
+          "static": 3,
+          "dynamic": 0
+        }
+      },
+      "reduce2": {
+        "all": 7,
+        "static": 7,
+        "inloop": {
+          "static": 3,
+          "dynamic": 0
+        }
+      },
+      "reduce3": {
+        "all": 7,
+        "static": 7,
+        "inloop": {
+          "static": 2,
+          "dynamic": 0
+        }
+      },
+      "reduce4": {
+        "all": 7,
+        "static": 7,
+        "inloop": {
+          "static": 2,
+          "dynamic": 0
+        }
+      },
+      "reduce5": {
+        "all": 11,
+        "static": 11,
+        "inloop": {
+          "static": 0,
+          "dynamic": 0
+        }
+      },
+      "reduce6": {
+        "all": 11,
+        "static": 11,
+        "inloop": {
+          "static": 3,
+          "dynamic": 0
+        }
+      }
+    }
+  }
+]

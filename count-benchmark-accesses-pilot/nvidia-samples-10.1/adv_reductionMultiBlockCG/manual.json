@@ -1,0 +1,15 @@
+[
+  {
+    "version": "",
+    "data": {
+      "reduceSinglePassMultiBlockCG": {
+        "all": 14,
+        "static": 14,
+        "inloop": {
+          "static": 9,
+          "dynamic": 0
+        }
+      }
+    }
+  }
+]

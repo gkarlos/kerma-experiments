@@ -1,0 +1,31 @@
+[
+  {
+    "version": "",
+    "data": {
+      "scanExclusiveShared": {
+        "all": 8,
+        "static": 8,
+        "inloop": {
+          "static": 3,
+          "dynamic": 0
+        }
+      },
+      "scanExclusiveShared2": {
+        "all": 9,
+        "static": 9,
+        "inloop": {
+          "static": 3,
+          "dynamic": 0
+        }
+      },
+      "uniformUpdate": {
+        "all": 3,
+        "static": 3,
+        "inloop": {
+          "static": 0,
+          "dynamic": 0
+        }
+      }
+    }
+  }
+]
